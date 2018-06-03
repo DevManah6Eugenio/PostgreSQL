@@ -23,7 +23,7 @@ alter table compras alter COLUMN recebido set default 0;
 create type enum_satisfacao as enum('muito_satisfeito', 'satisfeito', 'insatisfeito');
 
 --adicionando coluna satisfação na tabela compras
-alter table compras add column satisfacao enum_satisfacao
+alter table compras add column satisfacao enum_satisfacao;
 
 --modificando o nome da coluna form_pagamento para forma_pagamento
-alter table compras rename form_pagamento to forma_pagamento
+alter table compras rename form_pagamento to forma_pagamento;
