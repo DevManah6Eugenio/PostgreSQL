@@ -18,4 +18,3 @@ select max(valor) as valor_mais_alto from compras;
 
 --data mais antiga de compra
 select min(data) as data_mais_antiga from compras;
-
