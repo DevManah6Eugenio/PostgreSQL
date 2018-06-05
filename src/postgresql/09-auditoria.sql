@@ -7,7 +7,8 @@ SELECT tablename AS tabela FROM pg_catalog.pg_tables
 select c.relname as Tabela, a.attname as Coluna, d.nome_tabela, d.nome_coluna 
 	from pg_catalog.pg_attribute a
 	inner join pg_stat_user_tables c on (a.attrelid = c.relid)
-	left join dicionario_dados d on (d.nome_tabela = c.relname)
+	left join dicionario_dados d on (d.nome_tabela = c.relname
+	and d.nome_coluna = a.attname)
 	where a.attnum > 0 AND NOT a.attisdropped
 	and (d.nome_tabela is null or d.nome_coluna is null)
 	and c.schemaname = 'public'
