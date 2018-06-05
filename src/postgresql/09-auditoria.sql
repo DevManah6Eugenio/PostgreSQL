@@ -1,18 +1,7 @@
-﻿--retorna as tabelas que faltam serem adicionadas dicionario_dados
-select c.relname as Tabela, a.attname as Coluna--, d.nome_tabela, d.nome_coluna
-from pg_catalog.pg_attribute a
-inner join pg_stat_user_tables c on a.attrelid = c.relid
-inner join dicionario_dados d on c.relname = d.nome_tabela
-WHERE a.attnum > 0 AND NOT a.attisdropped
-order by c.relname, a.attname
+﻿--retorna todas as tabelas no banco de dados 
+SELECT tablename AS tabela FROM pg_catalog.pg_tables WHERE schemaname NOT IN ('pg_catalog', 'information_schema', 'pg_toast') ORDER BY schemaname, tablename
 
-select * from dicionario_dados  
-
-insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('', '', '');
-
-
-
---retorna todas as tabelas que faltam ser cadastradas em dicionario_dados
+--todas as colunas e tabelas que faltam na tabela dicionario_dados
 select c.relname as Tabela, a.attname as Coluna, d.nome_tabela, d.nome_coluna 
 from pg_catalog.pg_attribute a
 inner join pg_stat_user_tables c on (a.attrelid = c.relid)
@@ -21,3 +10,15 @@ WHERE a.attnum > 0 AND NOT a.attisdropped
 and (d.nome_tabela is null or d.nome_coluna is null)
 and c.schemaname = 'public'
 order by c.relname, a.attname;
+
+--compras
+insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('compras', 'data', 'Data');
+insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('compras', 'observacao', 'Observação');
+insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('compras', 'recebido', 'Recebido');
+insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('compras', 'forma_pagamento', 'Forma Pagamento');
+insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('compras', 'satisfacao', 'Satisfação');
+
+--lojas
+insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('lojas', 'endereco', 'Endereço');
+insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('lojas', 'nome', 'Nome');
+insert into dicionario_dados(nome_tabela, nome_coluna, descricao) values ('lojas', 'telefone', 'Telefone');
