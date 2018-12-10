@@ -7,5 +7,5 @@ select * from pg_stat_activity;
 --interromper processo que esta sendo executado no banco
 select pg_terminate_backend(pid);
 
---alterar um numero máximo de conexões de um usuário
+--alterar o numero máximo de conexões de um usuário
 ALTER USER <nome_usuario> WITH CONNECTION LIMIT <numero_conexoes>;
